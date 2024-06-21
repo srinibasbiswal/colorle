@@ -1,10 +1,15 @@
 import React from "react";
-import PlaceHolder from "../components/placeHolder";
+import CardView from "../components/CardView";
 
 function ColorleViewContainer(){
 
     return(
-        <PlaceHolder />
+        <div>
+            {/* header */}
+            {/* colorCards */}
+            <CardView />
+            {/* footer */}
+        </div>
     )
 }
 
