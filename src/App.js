@@ -1,10 +1,10 @@
 import './App.css';
-import ColorSwapViewContainer from './viewContainer/colorSwapViewContainer';
+import ColorleViewContainer from './viewContainer/colorleViewContainer';
 
 function App() {
   return (
     <div className="App">
-      <ColorSwapViewContainer />
+      <ColorleViewContainer />
     </div>
   );
 }
