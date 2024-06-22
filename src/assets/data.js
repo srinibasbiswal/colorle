@@ -2,15 +2,21 @@ export const colorCardsData = [
     {
         id: 'clr101',
         colorName: 'Red',
-        colorCode: '#FF0000'
+        colorCode: '#FF5733'
     },
     {
         id: 'clr102',
         colorName: 'Blue',
-        colorCode: '#0000FF'
-    },{
+        colorCode: '#0096FF'
+    },
+    {
         id: 'clr103',
         colorName: 'Green',
-        colorCode: '#00FF00'
+        colorCode: '#AFE1AF'
+    },
+    {
+        id: 'clr104',
+        colorName: 'Yellow',
+        colorCode: '#FFEA00'
     }
 ]

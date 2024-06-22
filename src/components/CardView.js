@@ -1,33 +1,39 @@
-import React from "react";
-import { ReactSortable } from "react-sortablejs";
+import React, { useRef, useState } from "react";
 import { colorCardsData } from "../assets/data";
-import { Card } from "react-bootstrap";
-
+  
 function CardView(){
-    const [list, setList] = React.useState(colorCardsData);
-
-  return (
-    <div>
-      <ReactSortable
-        filter=".addImageButtonContainer"
-        dragClass="sortableDrag"
-        list={list}
-        setList={setList}
-        animation="200"
-        easing="ease-out"
-      >
-        {list.map((item) => (
-            <Card style={{ width: '18rem' }}  className="draggableItem">
-            <Card.Body>
-              <Card.Text>
-              {item.colorName}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
-      </ReactSortable>
-    </div>
-  )
+    const [people, setPeople] = useState(colorCardsData)
+    
+      const dragPerson = useRef(0)
+      const draggedOverPerson = useRef(0)
+    
+      function handleSort() {
+        const peopleClone = [...people]
+        const temp = peopleClone[dragPerson.current]
+        peopleClone[dragPerson.current] = peopleClone[draggedOverPerson.current]
+        peopleClone[draggedOverPerson.current] = temp
+        setPeople(peopleClone)
+      }
+    
+      return (
+        <div className={`uk-child-width-1-2@s uk-grid-match`} uk-grid={`true`}>
+          {people.map((person, index) => (
+            <div
+                draggable
+                onDragStart={() => (dragPerson.current = index)}
+                onDragEnter={() => (draggedOverPerson.current = index)}
+                onDragEnd={handleSort}
+                onDragOver={(e) => e.preventDefault()}
+            >
+                <div className={`uk-card uk-card-default uk-card-body`} 
+                >
+                    {person.colorName}
+                </div>
+            </div>
+          ))}
+        </div>
+      )
 }
+
 
 export default CardView;
