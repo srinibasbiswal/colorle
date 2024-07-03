@@ -1,0 +1,15 @@
+.bgColorRed{
+	background-color: var(--redCard) !important;
+}
+
+.bgColorYellow {
+	background-color: var(--yellowCard) !important;
+}
+
+.bgColorGreen{
+	background-color: var(--greenCard) !important;
+}
+
+.bgColorBlue {
+	background-color: var(--blueCard) !important;
+}
