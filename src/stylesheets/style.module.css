@@ -13,3 +13,7 @@
 .bgColorBlue {
 	background-color: var(--blueCard) !important;
 }
+
+.dndCopy ~ div {
+    transform: none !important;
+}

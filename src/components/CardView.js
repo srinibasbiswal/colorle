@@ -1,6 +1,7 @@
 import React from "react";
 import { colorCardsData } from "../assets/data";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import styles from "../stylesheets/style.module.css";
 
 
 function getStyle(style, snapshot) {
@@ -57,15 +58,27 @@ function CardView(){
                   draggableId={`${color.id}`}
                 >
                   {(draggableProvider, snapshot) => (
-                    <div
-                      className={`uk-card uk-card-default uk-card-body`}
-                      ref={draggableProvider.innerRef}
-                      {...draggableProvider.draggableProps}
-                      {...draggableProvider.dragHandleProps}
-                      style={getStyle(draggableProvider.draggableProps.style, snapshot)}
-                    >
-                      {color.colorName}
-                    </div>
+                    <>
+                      <div
+                        className={`uk-card uk-card-default uk-card-body ${styles[color.colorClass]}`}
+                        ref={draggableProvider.innerRef}
+                        {...draggableProvider.draggableProps}
+                        {...draggableProvider.dragHandleProps}
+                        style={getStyle(draggableProvider.draggableProps.style, snapshot)}
+                      >
+                        {color.colorName}
+                      </div>
+                      {
+                        snapshot.isDragging 
+                        ? <div
+                        className={`uk-card uk-card-default uk-card-body ${styles.dndCopy} ${styles[color.colorClass]}`}
+                        
+                      >
+                        {color.colorName}
+                      </div>
+                        : null
+                      }
+                    </>
                   )}
                 </Draggable>
               ))}
