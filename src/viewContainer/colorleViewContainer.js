@@ -44,9 +44,9 @@ function ColorleViewContainer(){
             {(() => {
                 switch (gameState) {
                     case "notStarted":
-                        return <WelcomeComponent />
+                        return <WelcomeComponent startGame={startGame}/>
                     case "started":
-                        return <CardView initialData={gameStartState} finalData={gameResultState}/>
+                        return <CardView initialData={gameStartState} finalData={gameResultState} resetGame={resetGame}/>
                         break;
                     default:
                         break;

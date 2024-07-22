@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { colorCardsData } from "../assets/data";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import styles from "../stylesheets/style.module.css";
 import UIkit from "uikit";
@@ -23,7 +22,7 @@ function getStyle(style, snapshot) {
   };
 }
 
-const CardView = ({initialData, finalData}) => {
+const CardView = ({initialData, finalData, resetGame}) => {
 
   const [colorList, setColorList] = useState(initialData)
   const [isMatch, setIsMatch] = useState(false)
@@ -33,7 +32,7 @@ const CardView = ({initialData, finalData}) => {
 
   useEffect(() => {
     if (isMatch){
-      console.log(isMatch)
+      // console.log(isMatch)
       UIkit.modal('#modal-example').show();
     }
   },[isMatch])
@@ -49,7 +48,7 @@ const CardView = ({initialData, finalData}) => {
   }
 
   const handleDragStart = (result) => {
-    console.log(result)
+    // console.log(result)
     return
   }
 
@@ -57,14 +56,14 @@ const CardView = ({initialData, finalData}) => {
     var retryCount = retryCounter
     retryCount++
     setRetryCounter(retryCount)
-    console.log(finalData)
+    // console.log(finalData)
     let matchedCards = 0
     for (var i = 0; i < colorList.length; i++){
-      if (colorList[i].colorName == finalData[i].colorName){
+      if (colorList[i].colorName === finalData[i].colorName){
         matchedCards++
       }
     }
-    if (matchedCards == 4){
+    if (matchedCards === 4){
       setIsMatch(true)
     }else{
       setIsMatch(false)
@@ -73,14 +72,10 @@ const CardView = ({initialData, finalData}) => {
   }
 
   function resetData(){
-    // UIkit.modal('#modal-example').hide();
-    console.log("Came Here")
     setRetryCounter(0)
     setIsMatch(false)
     setMatchingCards(0)
-    console.log(retryCounter)
-    console.log(isMatch)
-    console.log(matchingCards)
+    resetGame()
   }
 
   return (
@@ -148,9 +143,9 @@ const CardView = ({initialData, finalData}) => {
             {(
                 ()=>{
                   if (isMatch){
-                    return <button class="uk-button uk-button-default" onClick={()=>resetData()}>RESET</button>
+                    return <button className={`uk-button uk-button-default`} onClick={()=>resetData()}>RESET</button>
                   }else{
-                    return <button class="uk-button uk-button-default" onClick={()=>compareResult()}>SOLVE</button>
+                    return <button className={`uk-button uk-button-default`} onClick={()=>compareResult()}>SOLVE</button>
                   }
                 }
               )()}  
