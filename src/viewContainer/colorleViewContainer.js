@@ -35,7 +35,7 @@ function ColorleViewContainer(){
     }
 
     useEffect(()=>{
-        startGame()
+        // startGame()
     },[])
       
 
