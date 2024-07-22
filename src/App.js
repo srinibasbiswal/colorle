@@ -1,10 +1,10 @@
 import './App.css';
-import ColorMatchViewContainer from './viewContainer/colorMatchViewContainer';
+import ColorleViewContainer from './viewContainer/ColorleViewContainer';
 
 function App() {
   return (
     <div className="App">
-      <ColorMatchViewContainer />
+      <ColorleViewContainer />
     </div>
   );
 }

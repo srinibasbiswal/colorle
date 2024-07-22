@@ -1,0 +1,23 @@
+.bgColorRed{
+	background-color: var(--redCard) !important;
+}
+
+.bgColorPurple {
+	background-color: var(--purpleCard) !important;
+}
+
+.bgColorGreen{
+	background-color: var(--greenCard) !important;
+}
+
+.bgColorBlue {
+	background-color: var(--blueCard) !important;
+}
+
+.dndCopy ~ div {
+    transform: none !important;
+}
+
+.textWhite {
+	color: #faebd7;
+}

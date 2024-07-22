@@ -1,3 +1,10 @@
+:root {
+	--redCard: #FF4C4C;
+  --purpleCard: #b84fce;
+  --greenCard: #00BA78;
+  --blueCard: #0974f1;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
