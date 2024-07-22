@@ -27,6 +27,7 @@ const CardView = ({initialData, finalData}) => {
 
   const [colorList, setColorList] = useState(initialData)
   const [isMatch, setIsMatch] = useState(false)
+  const [matchingCards, setMatchingCards] = useState(0)
 
 
   useEffect(()=>{
@@ -54,14 +55,19 @@ const CardView = ({initialData, finalData}) => {
 
   function compareResult(reorderedColorList){
     console.log(finalData)
-    var result = true;
+    let matchedCards = 0
     for (var i = 0; i < reorderedColorList.length; i++){
-      if (reorderedColorList[i].colorName != finalData[i].colorName){
-        result = false
-        break;
+      if (reorderedColorList[i].colorName == finalData[i].colorName){
+        matchedCards++
       }
     }
-    setIsMatch(result)     
+    if (matchedCards == 4){
+      setIsMatch(true)
+    }else{
+      setIsMatch(false)
+    }
+    setMatchingCards(matchedCards)
+      
   }
 
   return (
@@ -119,6 +125,10 @@ const CardView = ({initialData, finalData}) => {
           )}
         </Droppable>
       </DragDropContext>
+
+      <div className={`uk-card uk-card-default uk-card-body uk-width-1-2@m`}>
+        <p>{matchingCards} cards are in their correct position.</p>
+      </div>
     </div>
 
   )
