@@ -28,9 +28,10 @@ const CardView = ({initialData, finalData}) => {
   const [colorList, setColorList] = useState(initialData)
   const [isMatch, setIsMatch] = useState(false)
   const [matchingCards, setMatchingCards] = useState(0)
+  const [retryCounter, setRetryCounter] = useState(0)
 
 
-  useEffect(()=>{
+  useEffect(() => {
     if (isMatch){
       console.log(isMatch)
       UIkit.modal('#modal-example').show();
@@ -45,7 +46,6 @@ const CardView = ({initialData, finalData}) => {
     let reorderedColorList = [...colorList]
     reorderedColorList[sourceIndex] = reorderedColorList.splice(destinationIndex, 1, reorderedColorList[sourceIndex])[0];
     setColorList(reorderedColorList)
-    compareResult(reorderedColorList)
   }
 
   const handleDragStart = (result) => {
@@ -53,11 +53,14 @@ const CardView = ({initialData, finalData}) => {
     return
   }
 
-  function compareResult(reorderedColorList){
+  function compareResult(){
+    var retryCount = retryCounter
+    retryCount++
+    setRetryCounter(retryCount)
     console.log(finalData)
     let matchedCards = 0
-    for (var i = 0; i < reorderedColorList.length; i++){
-      if (reorderedColorList[i].colorName == finalData[i].colorName){
+    for (var i = 0; i < colorList.length; i++){
+      if (colorList[i].colorName == finalData[i].colorName){
         matchedCards++
       }
     }
@@ -67,17 +70,27 @@ const CardView = ({initialData, finalData}) => {
       setIsMatch(false)
     }
     setMatchingCards(matchedCards)
-      
+  }
+
+  function resetData(){
+    // UIkit.modal('#modal-example').hide();
+    console.log("Came Here")
+    setRetryCounter(0)
+    setIsMatch(false)
+    setMatchingCards(0)
+    console.log(retryCounter)
+    console.log(isMatch)
+    console.log(matchingCards)
   }
 
   return (
     <div className={`uk-container`}>
       <div id="modal-example" data-uk-modal>
         <div className={`uk-modal-dialog uk-modal-body`}>
-            <h2 className={`uk-modal-title`}>Headline</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <h2 className={`uk-modal-title`}>Congratulations !! </h2>
+            <p>Awesome!! You have solved the puzzle in {retryCounter} tries. Well Done !! </p>
             <p className={`uk-text-right`}>
-                <button className={`uk-button uk-button-default uk-modal-close`} type="button" data-uk-close>Cancel</button>
+                <button className={`uk-button uk-button-default uk-modal-close`} type="button">Close</button>
             </p>
         </div>
       </div>
@@ -132,7 +145,17 @@ const CardView = ({initialData, finalData}) => {
         {/* Result Component */}
         <div className={`uk-margin uk-width-1-2@m uk-align-center`}>
           <div className={`uk-card uk-card-default uk-card-body uk-width-1-1 uk-text-center uk-box-shadow-large uk-border-rounded`}>
+            {(
+                ()=>{
+                  if (isMatch){
+                    return <button class="uk-button uk-button-default" onClick={()=>resetData()}>RESET</button>
+                  }else{
+                    return <button class="uk-button uk-button-default" onClick={()=>compareResult()}>SOLVE</button>
+                  }
+                }
+              )()}  
             <p className={`uk-align-center`}>{matchingCards} cards are in their correct position.</p>
+            <p className={`uk-align-center`}>Number of Tries : {retryCounter}</p>
           </div>
         </div>
       </div>

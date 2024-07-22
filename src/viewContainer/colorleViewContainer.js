@@ -40,16 +40,8 @@ function ColorleViewContainer(){
       
 
     return(
-        // <div><h1>Hello</h1></div>
         <div>
             {(() => {
-                // if (gameState == "notStarted"){
-                //     return <div><h1>Hello 1</h1></div>;
-
-                // }else{
-                //     return <div><h1>Hello21</h1></div>;
-                    
-                // }
                 switch (gameState) {
                     case "notStarted":
                         return <WelcomeComponent />
