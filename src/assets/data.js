@@ -16,7 +16,7 @@ export const colorCardsData = [
     },
     {
         id: 'clr104',
-        colorName: 'Yellow',
-        colorClass: 'bgColorYellow'
+        colorName: 'Purple',
+        colorClass: 'bgColorPurple'
     }
 ]
